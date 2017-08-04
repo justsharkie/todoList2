@@ -1,0 +1,56 @@
+ #heading {
+     padding: 10px;
+ }
+ 
+ li {
+     list-style-type: none;
+ }
+ 
+ .itemsSection {
+     padding: 30px;
+ }
+ 
+ .itemsSection h3 {
+     padding-left: 10px;
+ }
+ 
+ li input {
+     visibility: hidden;
+ }
+ 
+ #toDoItems {
+     margin-left: 10px;
+     font-size: 20px;
+ }
+ 
+ #deleteBtn {
+     color: red;
+     font-size: 25px;
+     display: inline;
+ }
+ 
+ #editBtn {
+     color: green;
+     font-size: 20px;
+     display: inline;
+     cursor: pointer;
+ }
+ 
+ #whiteBg {
+     padding: 20px;
+     border-radius: 12px;
+ }
+#addBtn {
+    width: 75px;
+    height: 75px;
+    border-radius: 50px;
+    border: transparent;
+    color: #fff;
+    font-size: 35px;
+    right: 0;
+    position: fixed;
+    z-index: 100px;
+    margin: 20px;
+    bottom: 0;
+    cursor: pointer;
+}
