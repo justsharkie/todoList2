@@ -7,7 +7,9 @@
  }
  
  .itemsSection {
-     padding: 30px;
+     padding: 40px;
+     float: left;
+     width: 100vw;
  }
  
  .itemsSection h3 {
@@ -53,4 +55,30 @@
     margin: 20px;
     bottom: 0;
     cursor: pointer;
+}
+#categorySelect {
+    border-radius: 0px;
+    background-color: mediumpurple;
+    color: white;
+    display: block;
+}
+.itemsMargin {
+    margin-left: 0px;
+}
+.tabBtns {
+    border-bottom: 2px solid #fff;
+    float: none;
+}
+
+@media screen and (min-width: 990px) {
+    .itemsMargin {
+        margin-left: 15px;
+    }
+    .tabBtns {
+        float: left;
+        margin-top: 30px;
+    }
+    #categorySelect {
+        display: none;
+    }
 }
