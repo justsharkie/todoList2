@@ -11,13 +11,14 @@
      float: left;
      width: 100vw;
      margin-left: 0px;
+     height: 100vh;
  }
  
  .itemsSection h3 {
      padding-left: 10px;
  }
  
- li input {
+ li input, #importanceChoice {
      visibility: hidden;
  }
  
@@ -30,6 +31,7 @@
      color: red;
      font-size: 25px;
      display: inline;
+     cursor: pointer;
  }
  
  #editBtn {
@@ -74,9 +76,21 @@
     height: 50px;
     color: #fff;
     font-weight: bold;
+    cursor: pointer;
 }
 .purpleBg {
     background-color: purple;
+}
+.form-check {
+    display: inline-block;
+}
+.form-check:active {
+    color: red;
+}
+#submitForm {
+    height: 50px;
+    width: 100px;
+    margin-top: 30px;
 }
 
 @media screen and (min-width: 990px) {

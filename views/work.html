@@ -2,14 +2,15 @@
     <div id="whiteBg" class="card col-sm-12">
         <h3 class="card-title">Work</h3>
         <ul class="col-md-12">
-            <li>
+            <li ng-repeat="todo in workItems track by todo.$id">
                 <label class="form-check-label col-md-12">
                     <input type="checkbox" class="form-check-input" />
                     <span class="fa fa-square-o" style="font-size: 20px;"></span>
-                    <span id="toDoItems">To do items</span>
-                    <span class="fa fa-exclamation text-danger text-right col-xs-1 offset-12"></span>
-                    <span class="fa fa-exclamation text-danger text-right col-xs-1 offset-12"></span>
-                    <p class="text-right">Due Date: Jan 1st 2000</p>
+                    <span id="toDoItems">{{todo.title}}</span>
+                    <!-- <span class="fa fa-exclamation text-danger text-right col-xs-1 offset-12"></span>
+                    <span class="fa fa-exclamation text-danger text-right col-xs-1 offset-12"></span> -->
+                    <p class="text-right">{{todo.dueDate}}</p>
+                    <p class="text-right">{{todo.comment}}</p>
                 </label>
                 <div class="col-md-12">
                     <span class="fa fa-pencil col-md-1 offset-8 offset-lg-10" id="editBtn"></span>

@@ -2,11 +2,11 @@
        <div id="whiteBg" class="card col-sm-12">
         <h3 class="card-title">Completed</h3>
         <ul class="col-md-12">
-            <li>
+            <li ng-repeat="todo in completedItems track by todo.$id">
                 <label class="form-check-label col-md-12 text-muted">
                     <input type="checkbox" class="form-check-input" />
                     <span class="fa fa-check-square-o" style="font-size: 20px;"></span>
-                    <span id="toDoItems">Completed items</span>
+                    <span id="toDoItems">{{todo.title}}</span>
                 </label>
                 <div class="col-md-12">
                     <span class="fa fa-pencil col-md-1 offset-9" id="editBtn"></span>

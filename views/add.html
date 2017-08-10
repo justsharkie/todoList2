@@ -1,0 +1,44 @@
+<section class="row bg-primary itemsSection">
+    <div id="whiteBg" class="card col-sm-12">
+        <h3 class="card-title text-center">Add New To Do</h3>
+        <form ng-submit="addTodo()">
+            <div class="form-group">
+                <label for="title">To Do Item:</label>
+                <input type="text" name="title" class="form-control" ng-model="newTodo.title" required>
+            </div>
+            <div class="form-group">
+                <label for="dueDate">Due Date:</label>
+                <input type="text" name="dueDate" class="form-control" ng-model="newTodo.dueDate" required>
+            </div>
+            <div class="form-group">
+                <label for="comments">Comment:</label>
+                <input type="textarea" class="form-control" name="comments" ng-model="newTodo.comment">
+            </div>
+            <p>Importance:</p>
+            <div class="form-check col-xs-1 offset-1">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="importance" id="importanceChoice" ng-model="newTodo.importance">
+                    <span class="fa fa-exclamation"></span>
+                </label>
+            </div>
+            <div class="form-check col-xs-1 offset-1">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="importance" id="importanceChoice" ng-model="newTodo.importance">
+                    <span class="fa fa-exclamation"></span>
+                    <span class="fa fa-exclamation"></span>
+                </label>
+            </div>
+            <div class="form-group">
+                <p>Category:</p>
+                <select class="custom-select" ng-model="newTodo.category">
+                    <option selected>None</option>
+                    <option value="personal">Personal</option>
+                    <option value="work">Work</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <a href="/#!/details/all"><input type="submit" class="btn btn-success col-xs-1 offset-0" id="submitForm" ng-click="addTodo()"></a>
+        </form>
+    </div>
+</section>

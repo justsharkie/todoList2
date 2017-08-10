@@ -2,13 +2,13 @@
     <div id="whiteBg" class="card col-sm-12">
         <h3 class="card-title">Personal</h3>
         <ul class="col-md-12">
-            <li>
+            <li ng-repeat="todo in personalItems track by todo.$id">
                 <label class="form-check-label col-md-12">
                     <input type="checkbox" class="form-check-input" />
                     <span class="fa fa-square-o" style="font-size: 20px;"></span>
-                    <span id="toDoItems">To do items</span>
-                    <p class="text-right">Due Date: Jan 1st 2000</p>
-                    <p class="text-right">This is a comment on a to do item.</p>
+                    <span id="toDoItems">{{todo.title}}</span>
+                    <p class="text-right">{{todo.dueDate}}</p>
+                    <p class="text-right">{{todo.comment}}</p>
                     
                 </label>
                 <div class="col-md-12">

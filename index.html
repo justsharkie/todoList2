@@ -16,24 +16,25 @@
         <div class="bg-success" id="heading">
             <h1 class="text-center" style="color: white;">To Do</h1>
             <div class="row col-md-12">
-                <a href="/#!/details/all" class="col-lg-2 col-sm-5 col-xs-6 offset-1 offset-lg-3"><button class="btn btn-success tabBtns col-sm-12">Uncompleted</button></a>
-                <a href="/#!/details/completed" class="col-lg-2 col-sm-5 col-xs-5 offset-1 offset-lg-2"><button class="btn btn-success tabBtns col-sm-12">Completed</button></a>
+                <a href="/#!/details/all" class="col-lg-2 col-sm-5 col-xs-6 offset-1 offset-lg-3"><button class="btn btn-success tabBtns col-sm-12" ng-click="completed=false">Uncompleted</button></a>
+                <a href="/#!/details/completed" class="col-lg-2 col-sm-5 col-xs-5 offset-1 offset-lg-2"><button class="btn btn-success tabBtns col-sm-12" ng-click="completed=true">Completed</button></a>
             </div>
         </div>
-        <div class="bg-info" id="tabs">
+        <div class="bg-info" id="tabs" ng-hide="completed">
             <a href="/#!/details/all"><button class="col-sm-3 bg-info">All</button></a>
             <a href="/#!/details/personal"><button class="col-sm-3 bg-info">Personal</button></a>
             <a href="/#!/details/work"><button class="col-sm-3 bg-info">Work</button></a>
             <a href="/#!/details/other" class="col-sm-3"><button class="col-sm-2 bg-info">Other</button></a>
         </div>
     </section>
+    
     <div ng-view class="col-xs-12"></div>
 
     
     <section>
-        <button id="addBtn" class="bg-success">
+        <a href="/#!/details/add"><button id="addBtn" class="bg-success">
             <span class="fa fa-plus"></span>
-        </button>
+            </button></a>
     </section>
 
     <!-- angular -->
