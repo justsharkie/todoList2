@@ -46,8 +46,11 @@ angular
         firebase.initializeApp(firebaseConfig)
     }) // end run
     .controller('todoCtrl', function ($scope, $firebaseObject, $firebaseArray) {
-        var dbRef = firebase.database().ref('todos').orderByChild('completed').equalTo(false)
+        var dbRef = firebase.database().ref().child('todos')
         $scope.todos = $firebaseArray(dbRef)
+    
+        var allTodos = firebase.database().ref('todos').orderByChild('completed').equalTo(false)
+        $scope.allItems = $firebaseArray(allTodos)
     
         var personalTodos = firebase.database().ref('todos').orderByChild('category').equalTo('personal')
         $scope.personalItems = $firebaseArray(personalTodos)
@@ -73,12 +76,16 @@ angular
         }
         $scope.newTodo = this.blankTodo()
         $scope.addTodo = () => {
+            $scope.newTodo.completed = false;
             $scope.todos.$add($scope.newTodo)
             $scope.newTodo = this.blankTodo()
         }
+        $scope.completeItem = (todo) => {
+            
+        }
         $scope.removeTodo = (todo) => {
             if (confirm('Delete this todo?')) {
-                $scope.todos.$remove(todo)
+                $scope.todos.$remove($scope.todos.$indexFor(todo.$id))
             }
         }
     }) // end controller
