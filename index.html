@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- add viewport functionality -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>To Do List (#2)</title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -11,132 +13,41 @@
     <link rel="stylesheet" href="/style/styles.css">
 </head>
 
-<body class="bg-secondary">
+<body class="bg-secondary" ng-app="myApp">
     <section>
         <div class="bg-success" id="heading">
             <h1 class="text-center" style="color: white;">To Do</h1>
             <div class="row col-md-12">
-            <button class="btn btn-success col-lg-2 col-sm-5 col-xs-5 offset-1 offset-lg-3 tabBtns">Uncompleted</button>
-            <button class="btn btn-success col-lg-2 col-sm-5  col-xs-5 offset-1 offset-lg-2 tabBtns">Completed</button>
+                <a href="/#!/details/all" class="col-lg-2 col-sm-5 col-xs-6 offset-1 offset-lg-3"><button class="btn btn-success tabBtns col-sm-12" ng-click="completed=false">Uncompleted</button></a>
+                <a href="/#!/details/completed" class="col-lg-2 col-sm-5 col-xs-5 offset-1 offset-lg-2"><button class="btn btn-success tabBtns col-sm-12" ng-click="completed=true">Completed</button></a>
             </div>
         </div>
-        <select class="custom-select col-sm-12" id="categorySelect">
-            <option selected>All</option>
-            <option value="personal">Personal</option>
-            <option value="work">Work</option>
-            <option value="other">Other</option>
-        </select>
-    </section>
-    <section class="row bg-primary itemsSection col-lg-6 col-xs-12">
-        <div id="whiteBg" class="card col-sm-12">
-            <h3 class="card-title">All</h3>
-            <ul class="col-md-12">
-                <li>
-                    <label class="form-check-label col-md-12">
-                    <input type="checkbox" class="form-check-input" />
-                    <span class="fa fa-square-o" style="font-size: 20px;"></span>
-                    <span id="toDoItems">To do items</span>
-                    <span class="fa fa-exclamation text-danger text-right col-xs-1 offset-12"></span>
-                    
-                    <p class="text-right">Due Date: Jan 1st 2000</p>
-                </label>
-                    <div class="col-md-12">
-                        <span class="fa fa-pencil col-md-1 offset-8 offset-lg-10" id="editBtn"></span>
-                        <span class="fa fa-trash col-md-1" id="deleteBtn"></span>
-                    </div>
-                </li>
-
-            </ul>
-        </div>
-    </section>
-    <!-- completed section (commented out to change)
-    <section class="itemsSection bg-info row">
-       <div id="whiteBg">
-        <h3>Completed</h3>
-        <ul class="col-md-12">
-            <li>
-                <label class="form-check-label col-md-12 text-muted">
-                    <input type="checkbox" class="form-check-input" />
-                    <span class="fa fa-check-square-o" style="font-size: 20px;"></span>
-                    <span id="toDoItems">Completed items</span>
-                </label>
-                <div class="col-md-12">
-                    <span class="fa fa-pencil col-md-1 offset-8" id="editBtn"></span>
-                    <span class="fa fa-trash col-md-1" id="deleteBtn"></span>
-                </div>
-            </li>
-        </ul>
-        </div>
-    </section> -->
-    <section class="row bg-info itemsSection itemsMargin col-xs-12 col-lg-6">
-        <div id="whiteBg" class="card col-sm-12">
-            <h3 class="card-title">Personal</h3>
-            <ul class="col-md-12">
-                <li>
-                    <label class="form-check-label col-md-12">
-                    <input type="checkbox" class="form-check-input" />
-                    <span class="fa fa-square-o" style="font-size: 20px;"></span>
-                    <span id="toDoItems">To do items</span>
-                    <p class="text-right">Due Date: Jan 1st 2000</p>
-                    <p class="text-right">This is a comment on a to do item.</p>
-                    
-                </label>
-                    <div class="col-md-12">
-                        <span class="fa fa-pencil col-md-1 offset-8 offset-lg-10" id="editBtn"></span>
-                        <span class="fa fa-trash col-md-1" id="deleteBtn"></span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </section>
-    <section class="row bg-warning itemsSection col-xs-12 col-lg-6">
-        <div id="whiteBg" class="card col-sm-12">
-            <h3 class="card-title">Work</h3>
-            <ul class="col-md-12">
-                <li>
-                    <label class="form-check-label col-md-12">
-                    <input type="checkbox" class="form-check-input" />
-                    <span class="fa fa-square-o" style="font-size: 20px;"></span>
-                    <span id="toDoItems">To do items</span>
-                    <span class="fa fa-exclamation text-danger text-right col-xs-1 offset-12"></span>
-                    <span class="fa fa-exclamation text-danger text-right col-xs-1 offset-12"></span>
-                    <p class="text-right">Due Date: Jan 1st 2000</p>
-                </label>
-                    <div class="col-md-12">
-                        <span class="fa fa-pencil col-md-1 offset-8 offset-lg-10" id="editBtn"></span>
-                        <span class="fa fa-trash col-md-1" id="deleteBtn"></span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </section>
-    <section class="row bg-danger itemsSection itemsMargin col-xs-12 col-lg-6">
-        <div id="whiteBg" class="card col-sm-12">
-            <h3 class="card-title">Other</h3>
-            <ul class="col-md-12">
-                <li>
-                    <label class="form-check-label col-md-12">
-                    <input type="checkbox" class="form-check-input" />
-                    <span class="fa fa-square-o" style="font-size: 20px;"></span>
-                    <span id="toDoItems">To do items</span>
-                    <p class="text-right">Due Date: Jan 1st 2000</p>
-                </label>
-                    <div class="col-md-12">
-                        <span class="fa fa-pencil col-md-1 offset-8 offset-lg-10" id="editBtn"></span>
-                        <span class="fa fa-trash col-md-1" id="deleteBtn"></span>
-                    </div>
-                </li>
-            </ul>
+        <div class="bg-info" id="tabs" ng-hide="completed">
+            <a href="/#!/details/all"><button class="col-sm-3 bg-info">All</button></a>
+            <a href="/#!/details/personal"><button class="col-sm-3 bg-info">Personal</button></a>
+            <a href="/#!/details/work"><button class="col-sm-3 bg-info">Work</button></a>
+            <a href="/#!/details/other" class="col-sm-3"><button class="col-sm-2 bg-info">Other</button></a>
         </div>
     </section>
     
+    <div ng-view class="col-xs-12"></div>
+
+    
     <section>
-        <button id="addBtn" class="bg-success">
+        <a href="/#!/details/add"><button id="addBtn" class="bg-success">
             <span class="fa fa-plus"></span>
-        </button>
+            </button></a>
     </section>
 
     <!-- angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <!-- ngRoute -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+    <!-- Load firebase -->
+    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+    <!-- Load angularFire -->
+    <script type="text/javascript" src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+    <!-- custom script -->
+    <script src="/js/app.js"></script>
 </body>
 </html>

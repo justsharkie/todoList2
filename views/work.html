@@ -1,0 +1,22 @@
+<section class="row bg-warning itemsSection col-xs-12">
+    <div id="whiteBg" class="card col-sm-12 col-lg-8 col-xl-6 offset-lg-2 offset-xl-3">
+        <h3 class="card-title">Work</h3>
+        <ul class="col-md-12">
+            <li ng-repeat="todo in workItems track by todo.$id">
+                <label class="form-check-label col-md-12">
+                    <input type="checkbox" class="form-check-input" />
+                    <span class="fa fa-square-o" style="font-size: 20px;"></span>
+                    <span id="toDoItems">{{todo.title}}</span>
+                    <!-- <span class="fa fa-exclamation text-danger text-right col-xs-1 offset-12"></span>
+                    <span class="fa fa-exclamation text-danger text-right col-xs-1 offset-12"></span> -->
+                    <p class="text-right">{{todo.dueDate}}</p>
+                    <p class="text-right">{{todo.comment}}</p>
+                </label>
+                <div class="col-md-12">
+                    <span class="fa fa-pencil col-md-1 offset-sm-9" id="editBtn"></span>
+                    <span class="fa fa-trash col-md-1" id="deleteBtn" ng-click="removeTodo(todo)"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
