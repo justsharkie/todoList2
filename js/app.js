@@ -49,17 +49,18 @@ angular
         var dbRef = firebase.database().ref().child('todos')
         $scope.todos = $firebaseArray(dbRef)
 
-        var allTodos = firebase.database().ref('todos').orderByChild('completed').equalTo(false)
-        $scope.allItems = $firebaseArray(allTodos)
+        var uncompleteTodos = firebase.database().ref('todos').orderByChild('completed').equalTo(false)
+        
+        $scope.allItems = $firebaseArray(uncompleteTodos)
 
         var personalTodos = firebase.database().ref('todos').orderByChild('category').equalTo('personal')
-        $scope.personalItems = $firebaseArray(personalTodos)
+        $scope.personalItems = $firebaseArray(personalTodos && uncompleteTodos)
 
         var workTodos = firebase.database().ref('todos').orderByChild('category').equalTo('work')
-        $scope.workItems = $firebaseArray(workTodos)
+        $scope.workItems = $firebaseArray(workTodos && uncompleteTodos)
 
         var otherTodos = firebase.database().ref('todos').orderByChild('category').equalTo('other')
-        $scope.otherItems = $firebaseArray(otherTodos)
+        $scope.otherItems = $firebaseArray(otherTodos && uncompleteTodos)
 
         var completedTodos = firebase.database().ref('todos').orderByChild('completed').equalTo(true)
         $scope.completedItems = $firebaseArray(completedTodos)
