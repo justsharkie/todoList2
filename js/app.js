@@ -48,22 +48,22 @@ angular
     .controller('todoCtrl', function ($scope, $firebaseObject, $firebaseArray) {
         var dbRef = firebase.database().ref().child('todos')
         $scope.todos = $firebaseArray(dbRef)
-    
+
         var allTodos = firebase.database().ref('todos').orderByChild('completed').equalTo(false)
         $scope.allItems = $firebaseArray(allTodos)
-    
+
         var personalTodos = firebase.database().ref('todos').orderByChild('category').equalTo('personal')
         $scope.personalItems = $firebaseArray(personalTodos)
-    
+
         var workTodos = firebase.database().ref('todos').orderByChild('category').equalTo('work')
         $scope.workItems = $firebaseArray(workTodos)
-    
+
         var otherTodos = firebase.database().ref('todos').orderByChild('category').equalTo('other')
         $scope.otherItems = $firebaseArray(otherTodos)
-    
+
         var completedTodos = firebase.database().ref('todos').orderByChild('completed').equalTo(true)
         $scope.completedItems = $firebaseArray(completedTodos)
-    
+
         this.blankTodo = function () {
             ({
                 title: '',
@@ -80,12 +80,31 @@ angular
             $scope.todos.$add($scope.newTodo)
             $scope.newTodo = this.blankTodo()
         }
-        $scope.completeItem = (todo) => {
-            
-        }
         $scope.removeTodo = (todo) => {
             if (confirm('Delete this todo?')) {
                 $scope.todos.$remove($scope.todos.$indexFor(todo.$id))
+            }
+        }
+
+        // WORK ON COMPLETING ITEMS
+        $scope.completeTodo = (todo) => {
+            todo.completed == true
+            $scope.todos.$save($scope.todos.$indexFor(todo.$id))
+        }
+        // WORK ON EDITING ITEMS
+
+        $scope.high = (todo) => {
+            if (todo.important == 2) {
+                return true
+            } else {
+                return false
+            }
+        }
+        $scope.medium = (todo) => {
+            if (todo.important == 1) {
+                return true
+            } else {
+                return false
             }
         }
     }) // end controller

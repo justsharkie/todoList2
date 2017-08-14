@@ -3,17 +3,27 @@
         <h3 class="card-title">All</h3>
         <ul class="col-md-12">
             <li ng-repeat="todo in allItems track by todo.$id">
-                <label class="form-check-label col-md-12">
+                <label class="form-check-label col-md-12" ng-click="todo.completed == true || completeTodo(todo)">
                     <input type="checkbox" class="form-check-input" />
-                    <span class="fa fa-square-o" style="font-size: 20px;" ng-click="completeItem(todo)"></span>
+                    <span class="fa fa-square-o" style="font-size: 20px;"></span>
                     <span id="toDoItems">{{todo.title}}</span>
+                    
+                    <div ng-show="high(todo)">
+                        <span class="fa fa-exclamation text-danger text-right"></span>
+                        <span class="fa fa-exclamation text-danger text-right"></span>
+                    </div>
+                    <div ng-show="medium(todo)">
+                        <span class="fa fa-exclamation text-danger col-sm-1" id="importantMark"></span>
+                    </div>
+                    
                     <p class="text-right">Due: {{todo.dueDate}}</p>
                     <p class="text-right">{{todo.comment}}</p>
                 </label>
                 <div class="col-sm-12">
-                    <span class="fa fa-pencil col-md-1 offset-sm-9" id="editBtn"></span>
+                    <span class="fa fa-pencil col-md-1 offset-sm-9 col-xs-2 offset-6" id="editBtn"></span>
                     <span class="fa fa-trash col-md-1" id="deleteBtn" ng-click="removeTodo(todo)"></span>
                 </div>
+
             </li>
         </ul>
     </div>
