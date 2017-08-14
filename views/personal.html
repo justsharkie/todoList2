@@ -3,7 +3,7 @@
         <h3 class="card-title">Personal</h3>
         <ul class="col-md-12">
             <li ng-repeat="todo in personalItems track by todo.$id">
-                <label class="form-check-label col-md-12">
+                <label class="form-check-label col-md-12" ng-click="completeTodo(todo)">
                     <input type="checkbox" class="form-check-input" />
                     <span class="fa fa-square-o" style="font-size: 20px;"></span>
                     <span id="toDoItems">{{todo.title}}</span>

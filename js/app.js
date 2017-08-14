@@ -77,6 +77,15 @@ angular
         $scope.newTodo = this.blankTodo()
         $scope.addTodo = () => {
             $scope.newTodo.completed = false;
+            if($scope.newTodo.comment == null){
+                $scope.newTodo.comment = ''
+            }
+            if($scope.newTodo.important == null){
+                $scope.newTodo.important = 0
+            }
+            if($scope.newTodo.category == null){
+                $scope.newTodo.category = ''
+            }
             $scope.todos.$add($scope.newTodo)
             $scope.newTodo = this.blankTodo()
         }
@@ -88,8 +97,14 @@ angular
 
         // WORK ON COMPLETING ITEMS
         $scope.completeTodo = (todo) => {
-            todo.completed == true
-            $scope.todos.$save($scope.todos.$indexFor(todo.$id))
+            var fbTodo = $firebaseObject(dbRef.child(todo.$id))
+            fbTodo.completed = true
+            fbTodo.title = todo.title
+            fbTodo.dueDate = todo.dueDate
+            fbTodo.comment = todo.comment
+            fbTodo.important = todo.important
+            fbTodo.category = todo.category
+            fbTodo.$save()
         }
         // WORK ON EDITING ITEMS
 
