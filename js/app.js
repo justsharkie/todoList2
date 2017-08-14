@@ -54,13 +54,13 @@ angular
         $scope.allItems = $firebaseArray(uncompleteTodos)
 
         var personalTodos = firebase.database().ref('todos').orderByChild('category').equalTo('personal')
-        $scope.personalItems = $firebaseArray(personalTodos && uncompleteTodos)
+        $scope.personalItems = $firebaseArray(personalTodos)
 
         var workTodos = firebase.database().ref('todos').orderByChild('category').equalTo('work')
-        $scope.workItems = $firebaseArray(workTodos && uncompleteTodos)
+        $scope.workItems = $firebaseArray(workTodos)
 
         var otherTodos = firebase.database().ref('todos').orderByChild('category').equalTo('other')
-        $scope.otherItems = $firebaseArray(otherTodos && uncompleteTodos)
+        $scope.otherItems = $firebaseArray(otherTodos)
 
         var completedTodos = firebase.database().ref('todos').orderByChild('completed').equalTo(true)
         $scope.completedItems = $firebaseArray(completedTodos)
@@ -77,6 +77,7 @@ angular
         }
         $scope.newTodo = this.blankTodo()
         $scope.addTodo = () => {
+            // do this to set default values if the user doesn't input anything
             $scope.newTodo.completed = false;
             if($scope.newTodo.comment == null){
                 $scope.newTodo.comment = ''
@@ -87,6 +88,7 @@ angular
             if($scope.newTodo.category == null){
                 $scope.newTodo.category = ''
             }
+            
             $scope.todos.$add($scope.newTodo)
             $scope.newTodo = this.blankTodo()
         }
