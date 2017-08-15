@@ -46,6 +46,7 @@ angular
         firebase.initializeApp(firebaseConfig)
     }) // end run
     .controller('todoCtrl', function ($scope, $firebaseObject, $firebaseArray) {
+        // SETTING UP THE DIFFERENT DATABASES IN STUPID WAYS
         var dbRef = firebase.database().ref().child('todos')
         $scope.todos = $firebaseArray(dbRef)
 
@@ -53,13 +54,13 @@ angular
         
         $scope.allItems = $firebaseArray(uncompleteTodos)
 
-        var personalTodos = firebase.database().ref('todos').orderByChild('category').equalTo('personal') && uncompleteTodos
+        var personalTodos = firebase.database().ref('todos').orderByChild('category').equalTo('personal')
         $scope.personalItems = $firebaseArray(personalTodos)
 
-        var workTodos = firebase.database().ref('todos').orderByChild('category').equalTo('work') && uncompleteTodos
+        var workTodos = firebase.database().ref('todos').orderByChild('category').equalTo('work') 
         $scope.workItems = $firebaseArray(workTodos)
 
-        var otherTodos = firebase.database().ref('todos').orderByChild('category').equalTo('other') && uncompleteTodos
+        var otherTodos = firebase.database().ref('todos').orderByChild('category').equalTo('other') 
         $scope.otherItems = $firebaseArray(otherTodos)
 
         var completedTodos = firebase.database().ref('todos').orderByChild('completed').equalTo(true)
@@ -75,6 +76,8 @@ angular
                 completed: false
             })
         }
+        
+        // CREATE FUNCTIONALITY
         $scope.newTodo = this.blankTodo()
         $scope.addTodo = () => {
             // do this to set default values if the user doesn't input anything
@@ -92,13 +95,15 @@ angular
             $scope.todos.$add($scope.newTodo)
             $scope.newTodo = this.blankTodo()
         }
+        
+        // DELETE FUNCTIONALITY
         $scope.removeTodo = (todo) => {
             if (confirm('Delete this todo?')) {
                 $scope.todos.$remove($scope.todos.$indexFor(todo.$id))
             }
         }
 
-        // WORK ON COMPLETING ITEMS
+        // COMPLETE FUNCTIONALITY
         $scope.completeTodo = (todo) => {
             var fbTodo = $firebaseObject(dbRef.child(todo.$id))
             fbTodo.completed = true
@@ -106,11 +111,24 @@ angular
             fbTodo.dueDate = todo.dueDate
             fbTodo.comment = todo.comment
             fbTodo.important = todo.important
-            fbTodo.category = todo.category
+            fbTodo.category = ''
             fbTodo.$save()
         }
+        
+        $scope.uncompleteTodo = (todo) => {
+            var uncTodo = $firebaseObject(dbRef.child(todo.$id))
+            uncTodo.completed = false
+            uncTodo.title = todo.title
+            uncTodo.dueDate = todo.dueDate
+            uncTodo.comment = todo.comment
+            uncTodo.important = todo.important
+            uncTodo.category = todo.category
+            uncTodo.$save()
+        }
         // WORK ON EDITING ITEMS
-
+        
+        
+        // IMPORTANCE FUNCTIONALITY
         $scope.high = (todo) => {
             if (todo.important == 2) {
                 return true
