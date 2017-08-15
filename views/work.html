@@ -4,7 +4,7 @@
         <ul class="col-md-12">
             <li ng-repeat="todo in workItems track by todo.$id">
                 <label class="form-check-label col-md-12" ng-click="completeTodo(todo)">
-                    <input type="checkbox" class="form-check-input" />
+                    <input type="checkbox" class="form-check-input todoCheck" />
                     <span class="fa fa-square-o" style="font-size: 20px;"></span>
                     <span id="toDoItems">{{todo.title}}</span>
                     
@@ -19,8 +19,48 @@
                     <p class="text-right">{{todo.dueDate}}</p>
                     <p class="text-right">{{todo.comment}}</p>
                 </label>
+                
+                <form ng-show="editing" ng-submit="saveTodo(todo)" class="text-left">
+                    <div class="form-group">
+                        <label for="title">To Do Item:</label>
+                        <input type="text" name="title" ng-model="todo.title">
+                    </div>
+                    <div class="form-group">
+                        <label for="dueDate">Due Date:</label>
+                        <input type="text" name="dueDate" ng-model="todo.dueDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <input type="text" name="comment" ng-model="todo.comment" placeholder="Comment...">
+                    </div>
+                    <p>Importance:</p>
+                    <div class="form-check col-xs-1 offset-1">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="importance" id="importanceChoice" ng-model="todo.important" value="1">
+                            <span class="fa fa-exclamation"></span>
+                        </label>
+                    </div>
+                    <div class="form-check col-xs-1 offset-1">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="importance" id="importanceChoice" ng-model="todo.important" value="2">
+                            <span class="fa fa-exclamation"></span>
+                            <span class="fa fa-exclamation"></span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <p>Category:</p>
+                        <select class="custom-select" ng-model="todo.category">
+                            <option selected>None</option>
+                            <option value="personal">Personal</option>
+                            <option value="work">Work</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <input type="submit" class="btn btn-success" ng-click="editing=false">
+                </form>
+                
                 <div class="col-md-12">
-                    <span class="fa fa-pencil col-md-1 offset-sm-9 col-xs-2 offset-6" id="editBtn"></span>
+                    <span class="fa fa-pencil col-md-1 offset-sm-9 col-xs-2 offset-6" id="editBtn" ng-click="editing=true"></span>
                     <span class="fa fa-trash col-md-1" id="deleteBtn" ng-click="removeTodo(todo)"></span>
                 </div>
             </li>
