@@ -95,11 +95,24 @@
 #hidden {
     display: none;
 }
+.importanceIndicators {
+    display: inline;
+}
+@media screen and (max-width: 500px) {
+    #tabs {
+        width: 100vw;
+        display: block;
+        text-align: center;
+    }
+}
 
 @media screen and (max-width: 575px) {
     li {
         padding-top: 30px;
         padding-bottom: 30px;
+    }
+    #tabs button {
+        width: 22vw;
     }
 }
 

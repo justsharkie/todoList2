@@ -8,11 +8,11 @@
                     <span class="fa fa-square-o" style="font-size: 20px;"></span>
                     <span id="toDoItems">{{todo.title}}</span>
                     
-                    <div ng-show="high(todo)">
+                    <div ng-show="high(todo)" class="importanceIndicators">
                         <span class="fa fa-exclamation text-danger text-right"></span>
                         <span class="fa fa-exclamation text-danger text-right"></span>
                     </div>
-                    <div ng-show="medium(todo)">
+                    <div ng-show="medium(todo)" class="importanceIndicators">
                         <span class="fa fa-exclamation text-danger col-sm-1" id="importantMark"></span>
                     </div>
                     
@@ -35,6 +35,12 @@
                         <input type="text" name="comment" ng-model="todo.comment" placeholder="Comment...">
                     </div>
                     <p>Importance:</p>
+                    <div class="form-check col-xs-1 offset-1">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="importance" id="importanceChoice" ng-model="todo.important" value="0">
+                            None
+                        </label>
+                    </div>
                     <div class="form-check col-xs-1 offset-1">
                         <label class="form-check-label">
                             <input type="radio" class="form-check-input" name="importance" id="importanceChoice" ng-model="todo.important" value="1">
